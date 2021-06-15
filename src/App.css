@@ -1,12 +1,30 @@
 .display-box {
   margin: 0.5rem;
-  width: 20rem;
-  height: 10rem;
+  width: 21.5rem;
+  height: 12rem;
   border-radius: 1.5rem;
   color: #fffbe6;
+  text-align: left
 }
 
-.display {
-  padding-top: 0.3rem;
+.description {
+  padding-top: 1rem;
   padding-left: 1.2rem;
+}
+
+.verbal-button {
+  background-image: linear-gradient(#face6d, #db800b);
+  width: 6rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem
+}
+
+.emoji {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.press {
+  transition: width height 1s;
 }
