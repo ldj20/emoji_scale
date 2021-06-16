@@ -56,17 +56,17 @@ function App() {
   }
 
   function submit() {
-    let finished = true
+    let result = ""
     for (const [key, value] of Object.entries(selections)) {
-      if (value === null) {
-        setErrorMessage("Form is incomplete")
-        finished = false
-        break
+      if (value !== null) {
+        if (key == "numerical") {
+          result += `numerical: ${value}`
+        } else {
+          result += `${key}: ${value.id}, `
+        }
       }
     }
-    if (finished) {
-      setErrorMessage(`sick: ${selections.sick.id}, pain: ${selections.pain.id}, visual: ${selections.visual.id}, standard: ${selections.standard.id}, verbal: ${selections.verbal.id}, numerical: ${selections.numerical}`)
-    }
+    setErrorMessage(result)
   }
 
   return (
