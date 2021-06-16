@@ -13,18 +13,20 @@
 }
 
 .verbal-button {
-  background-image: linear-gradient(#face6d, #db800b);
-  width: 6rem;
+  /*background-image: linear-gradient(#face6d, #db800b);*/
+  width: 8rem;
   height: 3rem;
   border-radius: 0.5rem;
-  font-size: 0.85rem
+  font-size: 0.7rem
 }
 
 .emoji {
   width: 3.2rem;
   height: 3.2rem;
+  transition: transform 1s;
 }
 
-.press {
-  transition: width height 1s;
+.pressed {
+  width: 4rem;
+  height: 4rem;
 }

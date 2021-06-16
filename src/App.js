@@ -14,10 +14,10 @@ import neutralFace from './images/neutral-face.png';
 import slightFrown from './images/slight-frown.png';
 import frown from './images/frowning-face.png';
 import crying from './images/crying-face.png';
-import knife from './images/knife.png';
-import hammer from './images/hammer.png';
-import fire from './images/fire.png';
-import electricity from './images/electric.png';
+import stabbing from './images/knife.png';
+import pounding from './images/hammer.png';
+import burning from './images/fire.png';
+import electric from './images/electric.png';
 import Slider from 'react-input-slider';
 
 function App() {
@@ -33,12 +33,24 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("")
 
   function handleChange(event) {
-    const { name, id } = event.target;
-    console.log(event.target)
+    const { name, nodeName } = event.target;
+    if (selections[name] != null) {
+      const prev = selections[name]
+      if (nodeName == "IMG") {
+        prev.className = "emoji"
+      } else {
+        prev.className = "btn btn-warning verbal-button"
+      }
+    } 
+    if (nodeName == "IMG") {
+      event.target.className = "pressed emoji"
+    } else {
+      event.target.className = "active btn btn-warning verbal-button"
+    }
     setSelections(prevValue => {
       return {
         ...prevValue,
-        [name]: id
+        [name]: event.target
       }
     })
   }
@@ -46,7 +58,6 @@ function App() {
   function submit() {
     let finished = true
     for (const [key, value] of Object.entries(selections)) {
-      console.log(value)
       if (value === null) {
         setErrorMessage("Form is incomplete")
         finished = false
@@ -54,7 +65,7 @@ function App() {
       }
     }
     if (finished) {
-      setErrorMessage("")
+      setErrorMessage(`sick: ${selections.sick.id}, pain: ${selections.pain.id}, visual: ${selections.visual.id}, standard: ${selections.standard.id}, verbal: ${selections.verbal.id}, numerical: ${selections.numerical}`)
     }
   }
 
@@ -74,16 +85,16 @@ function App() {
         <br />
         <div className="row">
           <div className="col col-3 d-flex justify-content-center">
-            <img name="pain" className="press emoji" src={knife} id="knife" onClick={handleChange} />
+            <img name="pain" className="emoji" src={stabbing} id="stabbing" onClick={handleChange} />
           </div>
           <div className="col col-3 d-flex justify-content-center">
-            <img name="pain" className="emoji" src={fire} id="fire" onClick={handleChange} />
+            <img name="pain" className="emoji" src={burning} id="burning" onClick={handleChange} />
           </div>
           <div className="col col-3 d-flex justify-content-center">
-            <img name="pain" className="emoji" src={hammer} id="hammer" onClick={handleChange} />
+            <img name="pain" className="emoji" src={pounding} id="pounding" onClick={handleChange} />
           </div>
           <div className="col col-3 d-flex justify-content-center">
-            <img name="pain" className="emoji" src={electricity} id="electricity" onClick={handleChange} />
+            <img name="pain" className="emoji" src={electric} id="electric" onClick={handleChange} />
           </div>
         </div>
       </Box>
@@ -91,22 +102,22 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col col-4 d-flex justify-content-center">
-              <button name="verbal" type="button" className="btn btn-dark verbal-button" id="None"onClick={handleChange}>None</button>
+              <button name="verbal" type="button" className="btn btn-warning verbal-button" id="None" onClick={handleChange}>None</button>
             </div>
             <div className="col col-4 d-flex justify-content-center">
-              <button name="verbal" type="button" className="btn btn-dark verbal-button" id="Mild"onClick={handleChange}>Mild</button>
+              <button name="verbal" type="button" className="btn btn-warning verbal-button" id="Mild" onClick={handleChange}>Mild</button>
             </div>
             <div className="col col-4 d-flex justify-content-center">
-              <button name="verbal" type="button" className="btn btn-dark verbal-button" id="Moderate"onClick={handleChange}>Moderate</button>
+              <button name="verbal" type="button" className="btn btn-warning verbal-button" id="Moderate" onClick={handleChange}>Moderate</button>
             </div>
           </div>
           <br />
           <div className="row justify-content-center">
             <div className="col col-4 d-flex justify-content-center">
-              <button name="verbal" type="button" className="btn btn-dark verbal-button" id="Strong"onClick={handleChange}>Strong</button>
+              <button name="verbal" type="button" className="btn btn-warning verbal-button" id="Strong" onClick={handleChange}>Strong</button>
             </div>
             <div className="col col-4 d-flex justify-content-center">
-              <button name="verbal" type="button" className="btn btn-dark verbal-button" id="Worst Pain"onClick={handleChange}>Worst Pain</button>
+              <button name="verbal" type="button" className="btn btn-warning verbal-button" id="Worst Pain" onClick={handleChange}>Worst Pain</button>
             </div>
           </div>
         </div>
